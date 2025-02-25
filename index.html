@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    <div id="product-container" class="container mx-auto grid grid-cols-4 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-end"></div>
+    
+    <script>
+        const products = [
+            { title: "Netflix Premium", link: "https://example.com/netflix", image: "https://images.ctfassets.net/4cd45et68cgf/Rx83JoRDMkYNlMC9MKzcB/2b14d5a59fc3937afd3f03191e19502d/Netflix-Symbol.png?w=700&h=456" },
+            { title: "YouTube Premium", link: "https://example.com/youtube", image: "https://via.placeholder.com/100x75?text=YouTube" },
+            { title: "Minecraft PE", link: "https://example.com/minecraft", image: "https://via.placeholder.com/100x75?text=Minecraft+PE" },
+            { title: "Dompet Premium", link: "#", image: "https://via.placeholder.com/100x75?text=Produk+Lain" },
+        ];
+        
+        const container = document.getElementById("product-container");
+        
+        products.forEach(product => {
+            const productElement = document.createElement("a");
+            productElement.href = product.link;
+            productElement.className = "block bg-white p-2 rounded-lg shadow-md text-center hover:shadow-lg sm:p-1";
+            productElement.innerHTML = `
+                <div class="flex justify-center">
+                    <img src="${product.image}" alt="${product.title}" class="h-20 object-cover rounded sm:h-16">
+                </div>
+                <p class="mt-1 text-sm font-semibold sm:text-xs">${product.title}</p>
+            `;
+            container.appendChild(productElement);
+        });
+    </script>
+</body>
+</html>
