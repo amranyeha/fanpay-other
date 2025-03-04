@@ -9,94 +9,27 @@
 <body class="bg-gray-100 p-6">
     <div id="product-container" class="container mx-auto grid grid-cols-4 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-end"></div>
     
-    <!-- Popup -->
-    <div id="popup" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center">
-        <div class="bg-white p-4 rounded-lg shadow-lg w-96 max-w-full">
-            <h2 id="popup-title" class="text-lg font-semibold text-center"></h2>
-            <div id="popup-list" class="flex gap-2 overflow-x-auto py-2"></div>
-            <button onclick="closePopup()" class="mt-4 px-4 py-2 bg-red-500 text-white rounded block mx-auto">Tutup</button>
-        </div>
-    </div>
-    
     <script>
         const products = [
-            { 
-                title: "Netflix Premium", 
-                image: "https://images.ctfassets.net/4cd45et68cgf/Rx83JoRDMkYNlMC9MKzcB/2b14d5a59fc3937afd3f03191e19502d/Netflix-Symbol.png?w=700&h=456",
-                subProducts: [
-                    { title: "Paket 1 Bulan", link: "https://example.com/netflix-1bulan" },
-                    { title: "Paket 3 Bulan", link: "https://example.com/netflix-3bulan" },
-                    { title: "Paket 6 Bulan", link: "https://example.com/netflix-6bulan" },
-                    { title: "Paket 1 Tahun", link: "https://example.com/netflix-1tahun" }
-                ]
-            },
-            { 
-                title: "YouTube Premium", 
-                image: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png",
-                subProducts: [
-                    { title: "Paket Family", link: "https://example.com/youtube-family" },
-                    { title: "Paket Student", link: "https://example.com/youtube-student" },
-                    { title: "Paket Individual", link: "https://example.com/youtube-individual" }
-                ]
-            },
-            { 
-                title: "Minecraft PE", 
-                image: "https://i.pinimg.com/736x/7f/c4/9c/7fc49c4adbc07dfa36156c131d4c4f7a.jpg",
-                subProducts: [
-                    { title: "Minecraft Android", link: "https://example.com/minecraft-android" },
-                    { title: "Minecraft iOS", link: "https://example.com/minecraft-ios" },
-                    { title: "Minecraft Windows 10", link: "https://example.com/minecraft-windows10" }
-                ]
-            },
-            { 
-                title: "Dompet Premium", 
-                image: "https://e7.pngegg.com/pngimages/227/869/png-clipart-wallet-money-financial-transaction-wallet-icon-rectangle-business-cards.png",
-                subProducts: [
-                    { title: "Saldo Rp50.000", link: "https://example.com/saldo-50k" },
-                    { title: "Saldo Rp100.000", link: "https://example.com/saldo-100k" },
-                    { title: "Saldo Rp200.000", link: "https://example.com/saldo-200k" }
-                ]
-            }
+            { title: "GEKAT", link: "https://wa.me/6285922260885?text=Halo%20Admin%2C%20Saya%20Ingin%20Info%20produk%20GEKAT", image: "https://i.ibb.co.com/23L2266P/20250212-205731.jpg" },
+            { title: "AKAT", link: "https://wa.me/6285922260885?text=Halo%20Admin%2C%20Saya%20Ingin%20Info%20produk%20AKAT", image: "https://i.ibb.co.com/jvCyJRyY/20250212-205533.jpg" },
+            { title: "DPKAT", link: "https://wa.me/6285922260885?text=Halo%20Admin%2C%20Saya%20Ingin%20Info%20produk%20DPKAT", image: "https://i.ibb.co.com/0Tn2nkM/20250212-205846.jpg" },
+            { title: "STKAT", link: "https://wa.me/6285922260885?text=Halo%20Admin%2C%20Saya%20Ingin%20Info%20produk%20STKAT", image: "https://i.ibb.co.com/Nd81jPVp/20250212-205802.jpg" }
         ];
         
         const container = document.getElementById("product-container");
-        const popup = document.getElementById("popup");
-        const popupTitle = document.getElementById("popup-title");
-        const popupList = document.getElementById("popup-list");
         
         products.forEach(product => {
-            const productElement = document.createElement("div");
-            productElement.className = "block bg-white p-2 rounded-lg shadow-md text-center hover:shadow-lg sm:p-1 cursor-pointer";
+            const productElement = document.createElement("a");
+            productElement.href = product.link;
+            productElement.className = "block bg-white p-2 rounded-lg shadow-md text-center hover:shadow-lg sm:p-1";
             productElement.innerHTML = `
                 <div class="flex justify-center">
                     <img src="${product.image}" alt="${product.title}" class="h-20 object-cover rounded sm:h-16">
                 </div>
                 <p class="mt-1 text-sm font-semibold sm:text-xs">${product.title}</p>
             `;
-            productElement.onclick = () => showPopup(product);
             container.appendChild(productElement);
-        });
-        
-        function showPopup(product) {
-            popupTitle.textContent = product.title;
-            popupList.innerHTML = product.subProducts.map(sub => `
-                <a href="${sub.link}" class="block bg-white p-2 rounded-lg shadow-md text-center hover:shadow-lg sm:p-1 cursor-pointer w-28 flex-shrink-0">
-                    <div class="flex justify-center">
-                        <img src="${product.image}" alt="${sub.title}" class="h-12 object-cover rounded sm:h-10">
-                    </div>
-                    <p class="mt-1 text-xs font-semibold">${sub.title}</p>
-                </a>
-            `).join('');
-            popup.classList.remove("hidden");
-        }
-        
-        function closePopup() {
-            popup.classList.add("hidden");
-        }
-
-        // Menutup popup jika diklik di luar area
-        document.addEventListener("click", (e) => {
-            if (e.target === popup) closePopup();
         });
     </script>
 </body>
